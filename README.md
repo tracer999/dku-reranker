@@ -87,6 +87,14 @@ src/train_c2_targeted.py    LoRA 학습
 
 ⛔ 학습에 사용한 문항과 원문은 이 저장소에 포함하지 않는다.
 
+## 소속
+
+단국대학교 **정보융합기술창업대학원**
+<https://cms.dankook.ac.kr/web/gict>
+
+본 어댑터는 해당 대학원의 석사 학위논문 연구 과정에서 학습·공개되었다.
+`DKU` 는 단국대학교(Dankook University)를 가리킨다.
+
 ## 라이선스
 
 이 어댑터는 `BAAI/bge-reranker-v2-m3` 의 파생물이며 원본과 같은 **Apache License 2.0** 을 따른다.
@@ -99,6 +107,7 @@ src/train_c2_targeted.py    LoRA 학습
   title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Kim, Jinseok},
   year   = {2026},
+  school = {단국대학교 정보융합기술창업대학원},
   note   = {LoRA adapter on BAAI/bge-reranker-v2-m3},
   url    = {https://github.com/tracer999/dku-reranker}
 }

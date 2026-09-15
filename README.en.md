@@ -90,6 +90,14 @@ src/train_c2_targeted.py    LoRA training
 
 The training items and source documents are **not** included in this repository.
 
+## Affiliation
+
+**Graduate School of Information Convergence Technology and Startup**, Dankook University
+<https://cms.dankook.ac.kr/web/gict>
+
+This adapter was trained and released as part of a master's thesis project at the school above.
+`DKU` stands for Dankook University.
+
 ## License
 
 This adapter is a derivative of `BAAI/bge-reranker-v2-m3` and is released under the same
@@ -102,6 +110,7 @@ This adapter is a derivative of `BAAI/bge-reranker-v2-m3` and is released under 
   title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Kim, Jinseok},
   year   = {2026},
+  school = {Graduate School of Information Convergence Technology and Startup, Dankook University},
   note   = {LoRA adapter on BAAI/bge-reranker-v2-m3},
   url    = {https://github.com/tracer999/dku-reranker}
 }
