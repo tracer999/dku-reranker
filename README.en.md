@@ -91,7 +91,7 @@ At 8.9MB, if you already use `bge-reranker-v2-m3` you can try it by adding a sin
 
 ### Where it fits
 
-- QA over Korean public-sector and government reports — the training data is exactly this kind of document
+- QA over **documents written in standard Korean** — the training data is written in precise standard Korean
 - Tasks that look up a value in a table — it was trained on situations where similar tables recur
 - RAG with a small (few-B) generator — the more evidence position matters, the more you can expect
 - Tight context budgets where only the top few chunks fit — what goes first matters most there
