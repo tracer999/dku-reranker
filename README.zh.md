@@ -3,14 +3,20 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Base model](https://img.shields.io/badge/base-bge--reranker--v2--m3-orange.svg)](https://huggingface.co/BAAI/bge-reranker-v2-m3)
 [![Adapter](https://img.shields.io/badge/LoRA-8.9MB-green.svg)](model/)
+[![Language](https://img.shields.io/badge/language-Korean--only-red.svg)](#)
 
 [한국어](README.md) | [English](README.en.md) | [日本語](README.ja.md) | **中文**
 
-这是一个面向韩语 PDF 文档检索增强生成（RAG）的重排序模型（reranker），用于整理送入小型语言模型
-（SLM）的证据片段顺序。公开模型 `BAAI/bge-reranker-v2-m3` 的主干权重保持冻结，仅使用韩语公共
-机构 PDF 报告的正确证据标注训练了 LoRA 适配器。
+**这是把公开重排序模型 `BAAI/bge-reranker-v2-m3` 针对韩语公共文档文体做了专门适配的版本。**
+在面向韩语 PDF 文档的检索增强生成（RAG）中，它负责整理送入小型语言模型（SLM）的证据片段顺序。
 
-**本适配器专门针对韩语。** 它只在韩语文档上训练、只在韩语上验证，因此在其他语言中的表现未知。
+基础模型是同时覆盖多种语言的多语言模型。广度是它的长处，但它并不深入到某一种语言的文档实际以
+怎样的文体写成。本适配器在保持其主干权重冻结的前提下，**只为韩语公共机构 PDF 报告这一个领域**
+补上了排序的判断力。训练信号来自这些报告中由人工直接标注的正确证据。
+
+**因此本适配器仅限韩语。** 它只在韩语文档上训练、只在韩语上验证，因此在其他语言中的表现未知。
+如果你处理的是韩语公共文档，可以期待比直接使用基础模型更好的排序；其他情况下，直接使用基础模型
+更为稳妥。
 
 小型语言模型在证据位于输入前部时才能准确取值。然而公共机构报告中，相似的表格和数字会在同一份
 文档里反复出现。因此即使检索取回了包含答案的片段，只要它没有排在前面，模型就会把前面那张表的

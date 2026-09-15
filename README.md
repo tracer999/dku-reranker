@@ -3,15 +3,23 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Base model](https://img.shields.io/badge/base-bge--reranker--v2--m3-orange.svg)](https://huggingface.co/BAAI/bge-reranker-v2-m3)
 [![Adapter](https://img.shields.io/badge/LoRA-8.9MB-green.svg)](model/)
+[![Language](https://img.shields.io/badge/language-Korean--only-red.svg)](#)
 
 **한국어** | [English](README.en.md) | [日本語](README.ja.md) | [中文](README.zh.md)
 
+**공개 재순위 모델 `BAAI/bge-reranker-v2-m3` 를 한국어 공공문서의 문체에 특화시킨 판입니다.**
 한국어 PDF 문서를 대상으로 하는 검색증강생성(RAG)에서, 소형 언어모델(SLM)에 넘길 근거 조각의
-순위를 바로잡는 재순위 모델(reranker)입니다. 공개 모델 `BAAI/bge-reranker-v2-m3` 의 본체 가중치를
-동결하고, 한국어 공공기관 PDF 보고서의 정답 근거 라벨로 LoRA 어댑터만 학습했습니다.
+순위를 바로잡는 역할을 합니다.
 
-**이 어댑터는 한국어에 특화되어 있습니다.** 한국어 문서로만 학습하고 한국어로만 검증했으므로,
-다른 언어에서 어떻게 동작하는지는 알 수 없습니다.
+기반 모델은 여러 언어를 함께 다루는 다국어 모델입니다. 그만큼 폭이 넓지만, 어느 한 언어의
+문서가 실제로 어떤 문체로 쓰이는지까지 파고들지는 않습니다. 이 어댑터는 그 본체 가중치는 그대로
+동결한 채, **한국어 공공기관 PDF 보고서라는 한 갈래에만** 순위 감각을 더했습니다. 학습 신호는
+그 보고서들에서 사람이 직접 표시한 정답 근거 라벨입니다.
+
+**그래서 이 어댑터는 한국어 전용입니다.** 한국어 문서로만 학습하고 한국어로만 검증했으므로,
+다른 언어에서 어떻게 동작하는지는 알 수 없습니다. 한국어 공공문서를 다루신다면 기반 모델을
+그대로 쓰시는 것보다 나은 순위를 기대하실 수 있고, 그 밖의 경우라면 기반 모델을 그대로 쓰시는
+편이 안전합니다.
 
 소형 언어모델은 근거가 입력 앞쪽에 있을 때 값을 정확히 뽑아냅니다. 그런데 공공기관 보고서는
 비슷한 표와 숫자가 한 문서에 여러 번 나오기 때문에, 검색이 정답 조각을 가져와도 그것이 앞에

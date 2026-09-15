@@ -3,16 +3,24 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Base model](https://img.shields.io/badge/base-bge--reranker--v2--m3-orange.svg)](https://huggingface.co/BAAI/bge-reranker-v2-m3)
 [![Adapter](https://img.shields.io/badge/LoRA-8.9MB-green.svg)](model/)
+[![Language](https://img.shields.io/badge/language-Korean--only-red.svg)](#)
 
 [한국어](README.md) | **English** | [日本語](README.ja.md) | [中文](README.zh.md)
 
-A reranker for Retrieval-Augmented Generation (RAG) over Korean PDF documents. It fixes the order
-of the evidence chunks handed to a small language model (SLM). The backbone weights of
-`BAAI/bge-reranker-v2-m3` stay frozen; only a LoRA adapter was trained, using gold-evidence labels
-from Korean public-sector PDF reports.
+**This is the public reranker `BAAI/bge-reranker-v2-m3`, specialised for the writing style of
+Korean public-sector documents.** In Retrieval-Augmented Generation (RAG) over Korean PDFs, it
+fixes the order of the evidence chunks handed to a small language model (SLM).
 
-**This adapter is specialised for Korean.** It was trained only on Korean documents and verified
-only in Korean, so how it behaves in other languages is unknown.
+The base model is multilingual, covering many languages at once. That breadth is its strength,
+but it does not reach down into how documents in any one language are actually written. This
+adapter leaves those backbone weights frozen and adds a sense of ranking for **one narrow slice
+only: Korean public-sector PDF reports.** The supervision comes from gold-evidence labels a human
+marked in those very reports.
+
+**So this adapter is Korean-only.** It was trained on Korean documents and verified in Korean, so
+how it behaves in other languages is unknown. If you work with Korean public documents you can
+expect better ordering than the base model gives; anywhere else, the base model is the safer
+choice.
 
 Small language models read values accurately when the evidence sits near the front of the input.
 Korean public-sector reports, however, repeat similar tables and figures many times within one
