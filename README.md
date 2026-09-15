@@ -289,6 +289,7 @@ docs/train_record.json            학습 기록 (설정 · 손실 · epoch 선�
   title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Yang, Seong Hun},
   year   = {2026},
+  school = {단국대학교 정보융합기술·창업대학원 IT컨버전스학과},
   note   = {LoRA adapter on BAAI/bge-reranker-v2-m3},
   url    = {https://github.com/tracer999/dku-reranker}
 }
@@ -298,6 +299,11 @@ docs/train_record.json            학습 기록 (설정 · 손실 · epoch 선�
 
 `BAAI/bge-reranker-v2-m3` 의 파생물이며 원본과 같은 Apache License 2.0 을 따릅니다.
 원본 모델의 라이선스와 저작자 표시를 함께 지켜야 합니다. 전문은 [LICENSE](LICENSE) 에 있습니다.
+
+## 소속
+
+단국대학교 **정보융합기술·창업대학원 IT컨버전스학과** 에서 학습·공개하였습니다.
+대학원 <https://cms.dankook.ac.kr/web/gict> · 학과 <https://cms.dankook.ac.kr/web/gict/it-2>
 
 ## 문의
 

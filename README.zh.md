@@ -280,6 +280,7 @@ docs/train_record.json            训练记录（配置・损失・epoch 选择�
   title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Yang, Seong Hun},
   year   = {2026},
+  school = {Dankook University, Dept. of IT Convergence},
   note   = {LoRA adapter on BAAI/bge-reranker-v2-m3},
   url    = {https://github.com/tracer999/dku-reranker}
 }
@@ -289,6 +290,12 @@ docs/train_record.json            训练记录（配置・损失・epoch 选择�
 
 本适配器是 `BAAI/bge-reranker-v2-m3` 的衍生作品，采用与原作相同的 Apache License 2.0。
 同时须遵守原模型的许可证与署名要求。全文见 [LICENSE](LICENSE)。
+
+## 所属
+
+在檀国大学 **信息融合技术·创业研究生院 IT 融合学科**（정보융합기술·창업대학원
+IT컨버전스학과）训练并公开。
+研究生院 <https://cms.dankook.ac.kr/web/gict> · 学科 <https://cms.dankook.ac.kr/web/gict/it-2>
 
 ## 联系方式
 
