@@ -30,28 +30,20 @@ targets that one failure.
 
 ## Why we built it
 
-If you try answering questions over Korean PDFs with a small language model, one failure shows up
-again and again: **the answer is right there in the input, and the model still gets it wrong.**
-Retrieval had done its job, the chunk containing the answer was included — and the model still
-copied a number from a different table sitting closer to the front.
+It targets one recurring failure in SLM-based RAG: **the supporting evidence is in the input, yet
+the model answers with a value taken from a different chunk.**
 
-Tracing it through the raw logs, the cause turned out to be **ranking**. A public-sector report
-repeats similar-looking tables year by year and region by region. Retrieval and reranking decide
-which of them goes first, but a public reranker looks at only one thing: **how related is this
-chunk to the question?** Tables on the same topic all look "related", while usually only one of
-them actually holds the answer. Relatedness alone cannot single that one out and lift it to the top.
+The cause is ranking. Public-sector reports repeat tables of identical layout year by year and
+region by region. A public reranker scores only relatedness to the question, so every table on the
+topic scores high and the single one holding the answer is not separated out.
 
-So we changed the approach slightly. Using labels where a human marked **which chunk actually
-supports the answer**, we nudged the public model a little further in that one direction.
-Retraining the whole backbone would be costly and would risk losing the general ability the public
-model already has, so we froze the backbone and attached only a small LoRA adapter. That is why
-the adapter is just 8.9MB.
+So we used **whether a chunk is the supporting evidence** as the training signal instead of
+relatedness. The backbone stays frozen and only a LoRA adapter is trained, preserving the public
+model's general performance and keeping deployment cost unchanged.
 
-Whether this actually helps, we measured directly. With the same questions and the same candidate
-chunks, swapping in this adapter raised the number of questions whose gold evidence ranked first
-from 18 to 79, and correct answers rose from 17 to 58. The details are in
-[Results](#results) below. For anyone who wants to check or verify this under the same conditions,
-we publish the exact adapter file used in the measurement.
+We measured the effect directly. Swapping only the reranker raised the number of questions whose
+gold evidence ranked first from 18 to 79, and correct answers from 17 to 58. The adapter file used
+in that measurement is released as is.
 
 ## Results
 
