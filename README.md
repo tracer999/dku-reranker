@@ -301,4 +301,5 @@ docs/train_record.json            학습 기록 (설정 · 손실 · epoch 선�
 
 ## 문의
 
-석사 학위논문 연구 과정에서 학습·공개한 어댑터입니다. 문의는 <sh.yang@dankook.ac.kr> 로 주십시오.
+질문이나 제안은 [Issues](https://github.com/tracer999/dku-reranker/issues) 또는
+<sh.yang@dankook.ac.kr> 로 주십시오.

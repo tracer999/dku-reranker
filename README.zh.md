@@ -292,4 +292,5 @@ docs/train_record.json            训练记录（配置・损失・epoch 选择�
 
 ## 联系方式
 
-这是在硕士学位论文研究过程中训练并公开的适配器。如有咨询，请发送至 <sh.yang@dankook.ac.kr>。
+如有问题或建议，请通过 [Issues](https://github.com/tracer999/dku-reranker/issues) 或
+<sh.yang@dankook.ac.kr> 与我们联系。

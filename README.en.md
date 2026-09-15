@@ -309,5 +309,6 @@ original model's license and attribution requirements apply as well. The full te
 
 ## Contact
 
-This adapter was trained and released as part of a master's thesis project. For enquiries, please
-write to <sh.yang@dankook.ac.kr>.
+For questions or suggestions, please use
+[Issues](https://github.com/tracer999/dku-reranker/issues) or write to
+<sh.yang@dankook.ac.kr>.

@@ -304,5 +304,5 @@ docs/train_record.json            学習記録（設定・損失・epoch 選択�
 
 ## お問い合わせ
 
-修士学位論文研究の過程で学習・公開したアダプタです。お問い合わせは <sh.yang@dankook.ac.kr>
-までお願いします。
+ご質問やご提案は [Issues](https://github.com/tracer999/dku-reranker/issues) または
+<sh.yang@dankook.ac.kr> までお寄せください。
