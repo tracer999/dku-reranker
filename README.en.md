@@ -11,22 +11,10 @@
 Korean public-sector documents.** In Retrieval-Augmented Generation (RAG) over Korean PDFs, it
 fixes the order of the evidence chunks handed to a small language model (SLM).
 
-The base model is multilingual, covering many languages at once. That breadth is its strength,
-but it does not reach down into how documents in any one language are actually written. This
-adapter leaves those backbone weights frozen and adds a sense of ranking for **one narrow slice
-only: Korean public-sector PDF reports.** The supervision comes from gold-evidence labels a human
-marked in those very reports.
-
-**So this adapter is Korean-only.** It was trained on Korean documents and verified in Korean, so
-how it behaves in other languages is unknown. If you work with Korean public documents you can
-expect better ordering than the base model gives; anywhere else, the base model is the safer
-choice.
-
-Small language models read values accurately when the evidence sits near the front of the input.
-Korean public-sector reports, however, repeat similar tables and figures many times within one
-document. So even when retrieval does bring back the right chunk, if that chunk is not near the
-front, the model copies a number from whichever table happens to be there instead. This adapter
-targets that one failure.
+The base model is multilingual — broad, but it does not reach into how documents in any one
+language are written. This adapter keeps those backbone weights frozen and trains only a LoRA
+adapter, on gold-evidence labels a human marked in Korean public-sector PDF reports.
+**It is Korean-only; its behaviour in other languages has not been verified.**
 
 ## Why we built it
 
