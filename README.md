@@ -2,9 +2,20 @@
 
 **한국어** | [English](README.en.md)
 
-한국어 공공기관 PDF 문서의 **정답 근거 라벨**로 학습한 재순위(reranker) LoRA 어댑터다.
+**한국어 PDF 문서를 다루는 검색증강생성(RAG)용 재순위 모델(reranker)이다.**
+소형 언어모델(SLM)에 넣을 근거 조각의 순위를 바로잡아, 정답을 담은 조각이 입력의 맨 앞에 오게 한다.
+
 공개 모델 [`BAAI/bge-reranker-v2-m3`](https://huggingface.co/BAAI/bge-reranker-v2-m3) 의
-본체 가중치를 **동결**하고 LoRA 어댑터만 학습하였다.
+본체 가중치를 **동결**하고, 한국어 공공기관 PDF 의 **정답 근거 라벨**로 LoRA 어댑터만 학습하였다.
+
+| | |
+|---|---|
+| 쓰는 자리 | RAG 파이프라인의 **검색 뒤 · 생성 앞** |
+| 하는 일 | 질문과 조각을 함께 채점해 **순위를 다시 매긴다** |
+| 기반 모델 | `BAAI/bge-reranker-v2-m3` (본체 동결 · LoRA 어댑터만 학습) |
+| 학습 자료 | 한국어 공공기관 PDF 보고서 264문항 · 네 기관 |
+| 검증 | `google/gemma-4-E2B-it` · 81문항에서 공개 BGE 17 대비 **58** |
+| 라이선스 | Apache-2.0 |
 
 `DKU` 는 단국대학교(Dankook University)를 가리킨다.
 

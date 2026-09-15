@@ -2,9 +2,22 @@
 
 [한국어](README.md) | **English**
 
-A reranker LoRA adapter trained on **gold-evidence labels** from Korean public-sector PDF documents.
+**A reranker for Retrieval-Augmented Generation (RAG) over Korean PDF documents.**
+It reorders the retrieved evidence chunks fed to a small language model (SLM) so that the chunk
+holding the answer comes first.
+
 The backbone weights of [`BAAI/bge-reranker-v2-m3`](https://huggingface.co/BAAI/bge-reranker-v2-m3)
-are **frozen**; only the LoRA adapter is trained.
+are **frozen**; only a LoRA adapter is trained, on **gold-evidence labels** from Korean
+public-sector PDF reports.
+
+| | |
+|---|---|
+| Where it sits | In a RAG pipeline, **after retrieval and before generation** |
+| What it does | Scores each (question, chunk) pair and **reorders** the chunks |
+| Base model | `BAAI/bge-reranker-v2-m3` (frozen backbone, LoRA adapter only) |
+| Training data | 264 items from Korean public-sector PDF reports, four institutes |
+| Evaluation | `google/gemma-4-E2B-it` — **58** of 81 vs. 17 for the public BGE reranker |
+| License | Apache-2.0 |
 
 `DKU` stands for Dankook University.
 
