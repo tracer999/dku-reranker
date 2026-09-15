@@ -292,7 +292,7 @@ docs/train_record.json            学習記録（設定・損失・epoch 選択�
   title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Yang, Seong Hun},
   year   = {2026},
-  school = {Dankook University, Dept. of IT Convergence},
+  school = {Dankook University, Graduate School of Information Convergence Technology and Entrepreneurship},
   note   = {LoRA adapter on BAAI/bge-reranker-v2-m3},
   url    = {https://github.com/tracer999/dku-reranker}
 }
@@ -305,9 +305,8 @@ docs/train_record.json            学習記録（設定・損失・epoch 選択�
 
 ## 所属
 
-檀国大学校 **情報融合技術・創業大学院 IT コンバージェンス学科**（정보융합기술·창업대학원
-IT컨버전스학과）にて学習・公開しました。
-大学院 <https://cms.dankook.ac.kr/web/gict> ・ 学科 <https://cms.dankook.ac.kr/web/gict/it-2>
+檀国大学校 **情報融合技術・創業大学院**（정보융합기술·창업대학원）にて学習・公開しました。
+<https://cms.dankook.ac.kr/web/gict>
 
 ## お問い合わせ
 
