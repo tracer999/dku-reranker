@@ -72,7 +72,7 @@
   ],
   "고른 epoch": {
     "고른 epoch": 5,
-    "adapter": "results/v92/c2_full_run_aws/adapter_full_ep5",
+    "adapter": "model/  (이 저장소에 담은 어댑터가 그것이다)",
     "D 구제 proxy": 0.7959,
     "F 순서 위반율": 0.1311,
     "통과한 epoch": [
