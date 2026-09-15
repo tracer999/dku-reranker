@@ -244,17 +244,6 @@ more often — 18 → 79. Splitting the same 81 questions by whether the rank ch
 Where the rank did not change, the two models are identical. The improvement comes from the
 ranking, not from the questions being easier.
 
-### What we could not establish
-
-| Item | Outcome |
-|---|---|
-| Keeping only the top 28 chunks | No difference detected on these 81 questions (`p = 1`) |
-| Placing the question before the evidence | No difference detected on these 81 questions (`p = 1`) |
-| Other generators | Not measured |
-| Other languages or document types | Not measured |
-
-The one confirmed effect is the trained reranker.
-
 ## Repository layout
 
 ```
