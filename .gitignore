@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.partial
+
+# 학습 자료와 원문은 올리지 않는다
+data/
+corpus/
+*.jsonl
