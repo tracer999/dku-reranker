@@ -310,8 +310,12 @@ docs/train_record.json            학습 기록 (설정 · 손실 · epoch 선�
 
 ## 소속
 
-단국대학교 **정보융합기술·창업대학원** 에서 학습·공개하였습니다.
-<https://cms.dankook.ac.kr/web/gict>
+**단국대학교 정보융합기술·창업대학원** 에서 학습·공개하였습니다.
+
+| 항목 | 내용 |
+|---|---|
+| 대학교 | 단국대학교 · <https://www.dankook.ac.kr> |
+| 대학원 | 정보융합기술·창업대학원 · <https://cms.dankook.ac.kr/web/gict> |
 
 ## 문의
 

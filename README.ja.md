@@ -313,7 +313,11 @@ docs/train_record.json            学習記録（設定・損失・epoch 選択�
 ## 所属
 
 檀国大学校 **情報融合技術・創業大学院**（정보융합기술·창업대학원）にて学習・公開しました。
-<https://cms.dankook.ac.kr/web/gict>
+
+| 項目 | 内容 |
+|---|---|
+| 大学 | 檀国大学校 · <https://www.dankook.ac.kr> |
+| 大学院 | 情報融合技術・創業大学院 · <https://cms.dankook.ac.kr/web/gict> |
 
 ## お問い合わせ
 

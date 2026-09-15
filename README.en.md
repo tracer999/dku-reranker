@@ -320,7 +320,11 @@ original model's license and attribution requirements apply as well. The full te
 
 Trained and released at the **Graduate School of Information Convergence Technology and
 Entrepreneurship (정보융합기술·창업대학원), Dankook University**.
-<https://cms.dankook.ac.kr/web/gict>
+
+| Item | Detail |
+|---|---|
+| University | Dankook University · <https://www.dankook.ac.kr> |
+| Graduate school | Graduate School of Information Convergence Technology and Entrepreneurship · <https://cms.dankook.ac.kr/web/gict> |
 
 ## Contact
 

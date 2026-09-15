@@ -300,7 +300,11 @@ docs/train_record.json            训练记录（配置・损失・epoch 选择�
 ## 所属
 
 在檀国大学 **信息融合技术·创业研究生院**（정보융합기술·창업대학원）训练并公开。
-<https://cms.dankook.ac.kr/web/gict>
+
+| 项目 | 内容 |
+|---|---|
+| 大学 | 檀国大学 · <https://www.dankook.ac.kr> |
+| 研究生院 | 信息融合技术·创业研究生院 · <https://cms.dankook.ac.kr/web/gict> |
 
 ## 联系方式
 
