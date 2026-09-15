@@ -50,9 +50,13 @@ This adapter targets exactly that — it moves the chunk that holds the answer t
 | Item | Detail |
 |---|---|
 | Type | **Korean public-sector PDF reports** |
-| Sources | National Assembly Budget Office (nabo), Korea Rural Economic Institute (krei), Korea Transport Institute (koti) |
+| Sources | **Four institutes**, by share of the 264 training items |
+| ↳ National Assembly Budget Office (nabo) | 84 items · 10 documents |
+| ↳ Korea Rural Economic Institute (krei) | 82 items · 13 documents |
+| ↳ Korea Transport Institute (koti) | 49 items · 9 documents |
+| ↳ National Information Society Agency (nia) | 49 items · 12 documents |
 | How they were obtained | Downloaded directly from each institute's own public website; all are openly published reports |
-| Nature | Budget and settlement analyses, industry statistics, transport surveys — **table-heavy policy reports** |
+| Nature | Budget and settlement analyses, agricultural and industry statistics, transport surveys, ICT issue briefs — **table-heavy policy reports** |
 | Labels | For each question, the chunks containing the supporting evidence were **marked by a human** |
 | Training items | 264 |
 | Splits | **Document-level** — chunks from one document never appear in both train and validation |
