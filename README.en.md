@@ -212,6 +212,7 @@ The training items and source documents are **not** included in this repository.
 | | |
 |---|---|
 | Author | **YANG SEONG HUN (양성훈)** |
+| Contact | <sh.yang@dankook.ac.kr> |
 | Department | **Department of IT Convergence** (IT컨버젼스학과) — <https://cms.dankook.ac.kr/web/gict/it-2> |
 | Graduate school | Graduate School of Information Convergence Technology and Entrepreneurship, **Dankook University** |
 | Homepage | <https://cms.dankook.ac.kr/web/gict> |

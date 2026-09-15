@@ -220,6 +220,7 @@ src/train_c2_targeted.py    LoRA 학습
 | | |
 |---|---|
 | 작성자 | **양성훈 (YANG SEONG HUN)** |
+| 연락처 | <sh.yang@dankook.ac.kr> |
 | 학과 | **IT컨버젼스학과** — <https://cms.dankook.ac.kr/web/gict/it-2> |
 | 대학원 | 단국대학교 **정보융합기술창업대학원** |
 | 홈페이지 | <https://cms.dankook.ac.kr/web/gict> |
