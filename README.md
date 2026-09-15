@@ -1,5 +1,7 @@
 # DKU-reranker-v1
 
+**한국어** | [English](README.en.md)
+
 한국어 공공기관 PDF 문서의 **정답 근거 라벨**로 학습한 재순위(reranker) LoRA 어댑터다.
 공개 모델 [`BAAI/bge-reranker-v2-m3`](https://huggingface.co/BAAI/bge-reranker-v2-m3) 의
 본체 가중치를 **동결**하고 LoRA 어댑터만 학습하였다.
