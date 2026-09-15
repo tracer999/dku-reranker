@@ -255,14 +255,6 @@ ranking, not from the questions being easier.
 
 The one confirmed effect is the trained reranker.
 
-## Limitations
-
-- Trained on 264 items built from 44 reports across four Korean institutes
-- Verified with one generator (E2B) on 81 questions only
-- The evaluation set collects only questions the plain RAG setup got wrong; it is not a general question distribution
-- It addresses one failure — "the answer is in the input but another chunk is read". It cannot fix cases retrieval never returned
-- The comparison baseline is a single model, the public `bge-reranker-v2-m3`
-
 ## Repository layout
 
 ```
