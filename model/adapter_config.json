@@ -12,6 +12,7 @@
   "fan_in_fan_out": false,
   "inference_mode": true,
   "init_lora_weights": true,
+  "kasa_config": null,
   "layer_replication": null,
   "layers_pattern": null,
   "layers_to_transform": null,
@@ -36,9 +37,9 @@
   "rank_pattern": {},
   "revision": null,
   "target_modules": [
-    "key",
+    "value",
     "query",
-    "value"
+    "key"
   ],
   "target_parameters": null,
   "task_type": "SEQ_CLS",

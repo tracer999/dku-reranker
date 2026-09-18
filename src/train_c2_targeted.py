@@ -2,9 +2,9 @@ r"""C′ 표적 학습 — **D 는 gold 손실 · F 는 A 순서 보존 손실**
 
 ```
     ~/venvs/thesis-v92/bin/python code/train/train_c2_targeted.py \
-        --학습셋 results/v92/C2학습셋_262.jsonl \
-        --adapter자리 results/l4_run/out_canonical \
-        --out results/v92/c2_adapter \
+        --학습셋 results/v10/C2학습셋_262.jsonl \
+        --adapter자리 results/v10/l4_run/out_canonical \
+        --out results/v10/c2_adapter \
         --epochs 5 --lr 1e-4 --dfratio 1.0 --wgold 1.0 --worder 1.0
 ```
 
@@ -227,11 +227,11 @@ def main() -> int:
                     help="`full` = 표적 전부로 한 adapter (⇒ **주 재시험의 C**) · "
                          "`oof` = fold 별 adapter (⇒ **전이 진단 · 별도 표**). "
                          "⛔ 둘은 **목적이 다르다.** 섞어 쓰지 않는다")
-    ap.add_argument("--F검증출처", default="results/v92/C2학습셋_262.jsonl",
+    ap.add_argument("--F검증출처", default="results/v10/C2학습셋_262.jsonl",
                     help="지금 F172 가 든 학습셋. ⛔ 옛 F166 을 주지 마라 — 대칭차 검사의 기준이다")
     ap.add_argument("--기대그룹수", type=int, default=None,
                     help="D 안 그룹 수의 기대값. ⛔ 자료에서 자동으로 받지 않는다 — 그러면 순환이다")
-    ap.add_argument("--기대그룹수출처", default="results/v92/학습정본_100_검사.json",
+    ap.add_argument("--기대그룹수출처", default="results/v10/학습정본_100_검사.json",
                     help="`--기대그룹수` 를 안 주면 이 파일의 `★ 샘플링 그룹.그룹 수` 를 쓴다")
     ap.add_argument("--preflight-only", action="store_true", help="⛔ 학습하지 않고 preflight 만 낸다")
     # ⛔⛔ **측정용** — 기계가 바뀌면 **초/step 을 먼저 재고** 전체를 환산한다
@@ -240,7 +240,7 @@ def main() -> int:
     #   ⇒ 이 인자로 몇 step 만 돌아 **그 기계의 초/step 을 먼저 안다.** ⛔ adapter 를 안 남긴다
     ap.add_argument("--최대step", type=int, default=0,
                     help="⛔ 측정용 — 이만큼 돌고 멈춘다(adapter 를 안 남긴다). 0 이면 끝까지")
-    ap.add_argument("--preflight-out", default="results/v92/DKU_C프라임_preflight.json")
+    ap.add_argument("--preflight-out", default="results/v10/DKU_C프라임_preflight.json")
     a = ap.parse_args()
 
     rows = [json.loads(l) for l in open(a.학습셋, encoding="utf-8") if l.strip()]

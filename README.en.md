@@ -1,4 +1,4 @@
-# DKU-reranker-v1
+# DKU-reranker
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Base model](https://img.shields.io/badge/base-bge--reranker--v2--m3-orange.svg)](https://huggingface.co/BAAI/bge-reranker-v2-m3)
@@ -30,23 +30,34 @@ relatedness. The backbone stays frozen and only a LoRA adapter is trained, prese
 model's general performance and keeping deployment cost unchanged.
 
 We measured the effect directly. Swapping only the reranker raised the number of questions whose
-gold evidence ranked first from 18 to 79, and correct answers from 17 to 58. The adapter file used
+gold evidence ranked first and the number of correct answers both rose. The adapter file used
 in that measurement is released as is.
 
 ## Results
 
-Evaluated on 81 questions with Gemma 4 E2B. Questions, candidate chunks and generation settings
-were identical; **only the reranker changed.** The evaluation was carried out entirely on
-**Korean questions over Korean documents.**
+Evaluated on **documents not used for training**. We collected 46 fresh reports sharing no document
+with the 44 used in training, and measured on 80 questions drawn from them. Questions, candidate
+chunks and generation settings are identical; **only the reranker is swapped**. Generator is Gemma 4 E2B.
 
-| Reranker | Correct | Recovery | Gold evidence ranked first |
+| Reranker | Correct | Gold evidence ranked 1st | Other tables ahead of gold |
 |---|---|---|---|
-| none (plain RAG) | 0 / 81 | 0.0% | 1 / 81 |
-| `BAAI/bge-reranker-v2-m3` (public) | 17 / 81 | 21.0% | 18 / 81 |
-| **DKU-reranker-v1 (this adapter)** | **58 / 81** | **71.6%** | **79 / 81** |
+| None (plain RAG) | 0 / 80 | — | — |
+| `BAAI/bge-reranker-v2-m3` (public) | 69 / 80 | 64 / 80 | 4 |
+| Previous release | 60 / 80 | 27 / 80 | 22 |
+| **DKU-reranker (this adapter)** | **71 / 80** | **65 / 80** | **3** |
 
-That is 41 more questions than the public model (+50.6pp, McNemar exact two-sided `p = 2.46e-10`).
-Full conditions and the breakdown are in [Evaluation](#evaluation).
+That is **11 more questions than the previous release** (McNemar exact two-sided `p = 0.0034`).
+The reason is visible: questions with another table placed ahead of the gold evidence fell from
+**22 to 3**.
+
+★ These are numbers **on documents never seen in training**. Measuring on training documents gives
+higher values, but those do not predict behaviour on new documents.
+
+⛔ The gap to the public model (69 → 71) is **not** statistically significant at this sample size
+(`p = 0.754`). We do **not** claim to beat the public model. What this table shows is that
+*training corrects the ranking*, at a magnitude confirmed against the previous release at `p = 0.0034`.
+
+⛔ Values depend on the evaluation setup. The design is in [Evaluation](#evaluation).
 
 ## Model details
 
@@ -174,7 +185,7 @@ the training signal.
 | Korea Rural Economic Institute (krei) | 82 | 13 |
 | Korea Transport Institute (koti) | 49 | 9 |
 | National Information Society Agency (nia) | 49 | 12 |
-| **Total** | **264** | **44** |
+| **Total** | **44** |
 
 Splits are **document-level**: chunks from one document never appear in both train and validation.
 The training items and the source PDFs are not included in this repository.
@@ -193,9 +204,9 @@ python src/train_c2_targeted.py      # LoRA training
 | learning rate | 0.0001 |
 | seed | 20260915 |
 | max length | 1024 |
-| steps | 980 |
+| steps | 1,870 |
 | loss | A term raising gold-evidence scores + a term ordering gold above non-gold (weighted 1 : 1.0) |
-| training items | 264 (98 for score separation, 166 for pairwise order) |
+| training items | 353 (98 evidence separation, 166 order preservation, 89 table targeting) |
 | device | NVIDIA L4 (AWS g6.xlarge), 82.9 min |
 
 Which epoch to ship was fixed as a rule **before a single training step ran**: (1) discard any
@@ -204,45 +215,54 @@ highest gold-separation metric, (3) on a tie take the earlier epoch. The rule se
 
 | Metric (on the training set) | Before training | epoch 5 |
 |---|---|---|
-| Share of items where every gold chunk outranks every non-gold chunk | 0.4796 | **0.7959** |
-| Order-violation rate (lower is better) | 0.2866 | **0.1311** |
+| Share of items where every gold chunk outranks every non-gold chunk | 0.6738 | **0.8877** |
+| Order-violation rate (lower is better) | 0.2866 | **0.082** |
 
 Both are fit measured on the training set, not downstream performance; they were used only to
 select the adapter. The full record is in [`docs/train_record.json`](docs/train_record.json).
 
 ## Evaluation
 
-### Setup
+### How to measure
 
 | Item | Value |
 |---|---|
 | Generator | `google/gemma-4-E2B-it` (2.3B effective, GGUF Q8_0) |
-| Runtime | `llama-server`, context 10240, `temperature 0`, 99 GPU layers, 4 threads |
-| Machine | AWS g6.xlarge (NVIDIA L4) |
-| Questions | 81 |
-| Control | Identical questions, candidate chunks and generation settings; only the reranker was swapped |
+| Runtime | `llama-server`, context 10240, `temperature 0`, GPU layers 99, threads 4 |
+| Control | Questions, candidate chunks and generation settings identical. **Only the reranker is swapped** |
 
-To keep the comparison fair, the three conditions receive exactly the same input once the reranker
-is set aside. Same questions, same candidate chunks, same generation settings. The only thing that
-varies is the reranker, so the difference in correct answers can be attributed to it.
+For the comparison to be fair, everything but the reranker must be held equal. Same questions,
+same candidate chunks, same generation settings — only then can a difference in the number of
+correct answers be attributed to the reranker.
 
-The questions are those where E2B answered wrongly on the plain-RAG input **and the wrong value
-came from another chunk inside that same input**. The answer was present; the model read a
-different chunk. By that criterion the baseline is 0 / 81, and each model's correct count is also
-its net gain over the baseline.
+### Which questions to use
 
-### Results
+The failure this adapter targets is narrow: **the gold evidence is in the input, yet the model
+takes its value from a different chunk in that same input.** Your evaluation set should be built
+to that condition.
 
-See the [Results](#results) table above. The gain comes from gold evidence being placed first far
-more often — 18 → 79. Splitting the same 81 questions by whether the rank changed makes it clearer.
+1. Take questions the generator gets **wrong** on the plain RAG input (no reranker).
+2. Check that the wrong value **actually appears in another chunk of the same input**.
+3. Drop cases where the model invented the value — those cannot be attributed to chunk order.
 
-| Group | Questions | Public BGE | DKU |
-|---|---|---|---|
-| Gold evidence rank changed | 61 | 6 / 61 (10%) | **47 / 61 (77%)** |
-| Gold evidence rank unchanged | 18 | 11 / 18 (61%) | 11 / 18 (61%) |
+Built this way, the baseline scores 0, and each model's score is its own net gain.
 
-Where the rank did not change, the two models are identical. The improvement comes from the
-ranking, not from the questions being easier.
+### What to report alongside
+
+The number of correct answers alone does not say why it moved. Measure these two as well.
+
+| What | Why |
+|---|---|
+| **Questions where gold evidence is ranked first** | This is what the adapter directly changes |
+| **Other tables placed ahead of the gold evidence** | This is where the failure happens; it must fall for accuracy to rise |
+
+Also split the questions into those whose ranking **changed** and those that **did not**. On the
+unchanged ones the two models should agree. If they differ there, something other than ranking
+has crept in.
+
+> ⛔ **Why no numbers** — results shift substantially with document type, question phrasing and
+> candidate-chunk composition. Publishing one set as a headline invites mismatched expectations.
+> Please measure with the design above.
 
 ## Repository layout
 
@@ -257,12 +277,12 @@ docs/train_record.json            training record (settings, losses, epoch selec
 
 ## Citation
 
-> S. H. Yang, "DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking,"
+> S. H. Yang, "DKU-reranker: A LoRA Adapter for Korean Public-Document Evidence Reranking,"
 > GitHub repository, 2026. [Online]. Available: https://github.com/tracer999/dku-reranker
 
 ```bibtex
-@misc{dku_reranker_v1,
-  title  = {DKU-reranker-v1: A LoRA Adapter for Korean Public-Document Evidence Reranking},
+@misc{dku_reranker,
+  title  = {DKU-reranker: A LoRA Adapter for Korean Public-Document Evidence Reranking},
   author = {Yang, Seong Hun},
   year   = {2026},
   school = {Dankook University, Graduate School of Information Convergence Technology and Entrepreneurship},
